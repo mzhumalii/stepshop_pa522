@@ -1,0 +1,94 @@
+[
+  {
+    "model": "mainapp.category",
+    "pk": 1,
+    "fields": {
+      "name": "Джинсы",
+      "description": "Покупайте наши джинсы"
+    }
+  },
+  {
+    "model": "mainapp.category",
+    "pk": 2,
+    "fields": {
+      "name": "Кеды",
+      "description": ""
+    }
+  },
+  {
+    "model": "mainapp.category",
+    "pk": 3,
+    "fields": {
+      "name": "Сумки",
+      "description": ""
+    }
+  },
+  {
+    "model": "mainapp.category",
+    "pk": 4,
+    "fields": {
+      "name": "Куртки",
+      "description": "Очень теплые куртки"
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 1,
+    "fields": {
+      "category": 1,
+      "name": "Джинсы",
+      "image": "product_images/item-01.jpg",
+      "short_description": "",
+      "description": "",
+      "price": "300.00",
+      "quantity": 8,
+      "created": "2025-05-06T13:13:14.778Z",
+      "updated": "2025-05-06T13:13:14.778Z"
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 2,
+    "fields": {
+      "category": 2,
+      "name": "Кеды",
+      "image": "product_images/item-06.jpg",
+      "short_description": "",
+      "description": "Красные кеды",
+      "price": "287.00",
+      "quantity": 9,
+      "created": "2025-05-06T13:14:23.726Z",
+      "updated": "2025-05-06T13:14:23.726Z"
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 3,
+    "fields": {
+      "category": 3,
+      "name": "Сумки",
+      "image": "product_images/item-05.jpg",
+      "short_description": "",
+      "description": "Красивая сумка",
+      "price": "200.00",
+      "quantity": 10,
+      "created": "2025-05-06T13:15:09.997Z",
+      "updated": "2025-05-06T13:15:09.997Z"
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 4,
+    "fields": {
+      "category": 4,
+      "name": "Куртка синяя",
+      "image": "",
+      "short_description": "",
+      "description": "Синее не бывает",
+      "price": "400.00",
+      "quantity": 30,
+      "created": "2025-05-08T12:51:11.787Z",
+      "updated": "2025-05-08T13:11:38.517Z"
+    }
+  }
+]

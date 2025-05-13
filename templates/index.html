@@ -44,12 +44,11 @@
                 {% for product in products %}
                     <a href="#">
                         <div class="featured-item">
-                            {% if product.image.url %}
+                            {% if product.image %}
                                 <img src="{{ product.image.url }}"
                                     alt="{{ product.name }}">
                             {% else %}
-                            <img src="{% static 'assets/images/pingopango.png }"
-                                    alt="нет изображения">
+                            <img src="{% static 'assets/images/pingopango.png' %}" alt="нет изображения">
                             {% endif %}
                           <h4>{{ product.name }}</h4>
                           <h6>{{ product.price }} тг.</h6>
