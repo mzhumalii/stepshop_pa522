@@ -1,7 +1,8 @@
 from django import forms
-from django.contrib.auth.forms import (AuthenticationForm, UserCreationForm, UserChangeForm)
+from django.contrib.auth.forms import (AuthenticationForm, UserCreationForm,
+                                       UserChangeForm)
 
-from authapp.models import  ShopUser
+from authapp.models import ShopUser
 
 
 class ShopUserLoginForm(AuthenticationForm):
@@ -11,8 +12,8 @@ class ShopUserLoginForm(AuthenticationForm):
 
 
 class ShopUserRegisterForm(UserCreationForm):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+    def init(self, *args, **kwargs):
+        super().init(*args, **kwargs)
 
         for field_name, field in self.fields.items():
             field.help_text = None
@@ -21,7 +22,7 @@ class ShopUserRegisterForm(UserCreationForm):
         data = self.cleaned_data['age']
 
         if data < 18:
-            raise forms.ValidationError('Вы не совершеннолетний человек!')
+            raise forms.ValidationError('Вы слишком молоды!')
 
         return data
 
@@ -33,8 +34,8 @@ class ShopUserRegisterForm(UserCreationForm):
 
 
 class ShopUserEditForm(UserChangeForm):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+    def init(self, *args, **kwargs):
+        super().init(*args, **kwargs)
 
         for field_name, field in self.fields.items():
             field.help_text = None
@@ -46,12 +47,12 @@ class ShopUserEditForm(UserChangeForm):
         data = self.cleaned_data['age']
 
         if data < 18:
-            raise forms.ValidationError('Вы не совершеннолетний человек!')
+            raise forms.ValidationError('Вы слишком молоды!')
 
         return data
 
     class Meta:
         model = ShopUser
         fields = ('username', 'first_name',
-                  'email', 'age', 'avatar'
+                  'email', 'age', 'avatar',
                   'password')
