@@ -2,6 +2,16 @@ from django.shortcuts import render
 
 from mainapp.models import Product, Category
 
+
+def get_main_menu(current='mainapp:index'):
+    return [
+        {'href': 'mainapp:index', 'name': 'Главная', 'active': current},
+        {'href': 'mainapp:products', 'name': 'Товары', 'active': current},
+        {'href': 'mainapp:about', 'name': 'О нас', 'active': current},
+        {'href': 'mainapp:contacts', 'name': 'Контакты', 'active': current},
+    ]
+
+
 def index(request):
     title = 'Главная'
 
@@ -10,6 +20,7 @@ def index(request):
     context = {
         'title': title,
         'products': prods,
+        'menu_links': get_main_menu(),
     }
     return render(request, 'index.html', context)
 
@@ -19,6 +30,7 @@ def contacts(request):
     title = 'Контакты'
     context = {
         'title': title,
+        'menu_links': get_main_menu('mainapp:contacts'),
     }
     return render(request, 'contacts.html', context)
 
@@ -28,6 +40,7 @@ def about(request):
     title = 'O нас'
     context = {
         'title': title,
+        'menu_links': get_main_menu('mainapp:about'),
     }
     return render(request, 'about.html', context)
 
@@ -42,20 +55,22 @@ def products(request):
         'title': title,
         'products': prods,
         'categories': categories,
+        'menu_links': get_main_menu('mainapp:products'),
     }
     return render(request, 'products.html', context)
 
 
 
-def product(request):
+def product(request, pk):
     title = 'Товар'
 
-    prod = Product.objects.get(id=1)
-    same_prods = Product.objects.exclude(id=prod.id)
+    prod = Product.objects.get(id=pk)
+    same_prods = Product.objects.exclude(id=pk)
 
     context = {
         'title': title,
         'product': prod,
         'products': same_prods,
+        'menu_links': get_main_menu('mainapp:product'),
     }
     return render(request, 'product.html', context)

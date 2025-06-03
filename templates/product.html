@@ -40,7 +40,7 @@
             <div class="right-content">
               <h4>{{ product.name }}</h4>
               <h6>{{ product.price }} тг.</h6>
-              <p>{{ product.description %}</p>
+              <p>{{ product.description }}</p>
               <span>{{ product.quantity }} шт.</span>
 
               <div class="down-content">
@@ -71,7 +71,7 @@
 
               {% for product in products %}
 
-                    <a href="#">
+                    <a href="{% url 'mainapp:product' product.pk %}">
                         <div class="featured-item">
 
                             {% if product.image %}
