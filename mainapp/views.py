@@ -1,4 +1,7 @@
-from django.shortcuts import render
+from gc import get_objects
+
+from django.shortcuts import render, get_object_or_404
+from unicodedata import category
 
 from mainapp.models import Product, Category
 
@@ -46,7 +49,7 @@ def about(request):
 
 
 
-def products(request):
+def products(request, pk=None):
     title = 'Товары'
     prods = Product.objects.all()
     categories = Category.objects.all()
@@ -57,6 +60,17 @@ def products(request):
         'categories': categories,
         'menu_links': get_main_menu('mainapp:products'),
     }
+
+    if pk is not None:
+        if pk == 0:
+            products_ = Product.objects.all()
+            category = {'name': 'все'}
+        else:
+            category = get_object_or_404(Category, pk=pk)
+            products_ = Product.objects.filter(category__pk=pk)
+
+        context.update({'products': products_, 'category': category})
+
     return render(request, 'products.html', context)
 
 
