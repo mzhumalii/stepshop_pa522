@@ -41,9 +41,11 @@
           <div class="col-md-12">
             <div class="owl-carousel owl-theme">
 
+
                 {% for product in products %}
                     <a href="{% url 'mainapp:product' product.pk %}">
                         <div class="featured-item">
+
                             {% if product.image %}
                               <img src="{{ product.image.url }}"
                                    alt="{{ product.name }}">
@@ -54,6 +56,7 @@
 
                           <h4>{{ product.name }}</h4>
                           <h6>{{ product.price }} тг.</h6>
+
                         </div>
                     </a>
                 {% endfor %}
