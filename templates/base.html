@@ -36,30 +36,31 @@
         <div class="row">
           <div class="col-md-12">
 
+
             <span class="buttons">
                 {% if user.is_authenticated %}
                     <a href="/admin/"
                        class="btn btn-light btn-sm mx-3">
-                        Админка
+                            Админка
                     </a>
 
-                    <a href="{% url 'auth:edit' %}" class="btn btn-light btn-sm">
-                        {{ user.username|title }}
+
+                    <a href="{% url 'auth:edit' %}"
+                       class="btn btn-light btn-sm">
+                            {{ user.username|title }}
                     </a>
                     <a href="{% url 'auth:logout' %}"
                        class="btn btn-light btn-sm mx-3">Выйти</a>
                     {% if basket %}
-                        <a href="#" class="basket mx-3">
-                            <span>{{ basket|length }}</span>
-                        </a>
+                      <a href="{% url 'basket:view' %}" class="basket mx-3">
+                        <span>{{ basket|length }}</span>
+                      </a>
                     {% endif %}
-                {% else %}
 
+                {% else %}
                     <a href="{% url 'auth:login' %}"
                        class="btn btn-light btn-sm mx-3">Войти</a>
-
                 {% endif %}
-            </span>
           </div>
         </div>
       </div>
@@ -70,7 +71,7 @@
 
 
     {% block content %}
-      HTML-код, который отображается на странице
+        HTML-код которая отображается на странице
     {% endblock %}
 
 

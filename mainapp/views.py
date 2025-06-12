@@ -5,15 +5,9 @@ from unicodedata import category
 
 from basketapp.models import Basket
 from mainapp.models import Product, Category
+from mainapp.utils import get_main_menu, get_basket
 
 
-def get_main_menu(current='mainapp:index'):
-    return [
-        {'href': 'mainapp:index', 'name': 'Главная', 'active': current},
-        {'href': 'mainapp:products', 'name': 'Товары', 'active': current},
-        {'href': 'mainapp:about', 'name': 'О нас', 'active': current},
-        {'href': 'mainapp:contacts', 'name': 'Контакты', 'active': current},
-    ]
 
 
 def index(request):
@@ -25,6 +19,7 @@ def index(request):
         'title': title,
         'products': prods,
         'menu_links': get_main_menu(),
+        'basket': get_basket(request.user),
     }
     return render(request, 'index.html', context)
 
@@ -35,6 +30,7 @@ def contacts(request):
     context = {
         'title': title,
         'menu_links': get_main_menu('mainapp:contacts'),
+        'basket': get_basket(request.user),
     }
     return render(request, 'contacts.html', context)
 
@@ -45,6 +41,7 @@ def about(request):
     context = {
         'title': title,
         'menu_links': get_main_menu('mainapp:about'),
+        'basket': get_basket(request.user),
     }
     return render(request, 'about.html', context)
 
@@ -55,17 +52,14 @@ def products(request, pk=None):
     prods = Product.objects.all()
     categories = Category.objects.all()
 
-    basket = []
 
-    if request.user.is_authenticated:
-        basket = Basket.objects.filter(user=request.user)
 
     context = {
         'title': title,
         'products': prods,
         'categories': categories,
         'menu_links': get_main_menu('mainapp:products'),
-        'basket': basket,
+        'basket': get_basket(request.user),
     }
 
     if pk is not None:
